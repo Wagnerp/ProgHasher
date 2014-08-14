@@ -1,0 +1,73 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectGuid>{7CC09152-8404-498B-823F-8892C22404AC}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ProgHasher</RootNamespace>
+    <AssemblyName>ProgHasher</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="Hasher.cs" />
+    <Compile Include="Brain\HashEngine.cs" />
+    <Compile Include="HasherBase.cs" />
+    <Compile Include="Configuration\HasherConfig.cs" />
+    <Compile Include="Components\Containers\HasherList.cs" />
+    <Compile Include="Components\Events\HashEvent.cs" />
+    <Compile Include="Components\Timer\HashTimer.cs" />
+    <Compile Include="Poller\PriorityPoller.cs" />
+    <Compile Include="Main\Program.cs" />
+    <Compile Include="Components\Containers\ResultList.cs" />
+    <Compile Include="Brain\SearchBrain.cs" />
+    <Compile Include="Brain\SearchList.cs" />
+    <Compile Include="Poller\Task\Task.cs" />
+    <Compile Include="Poller\TaskPoller.cs" />
+    <Compile Include="Components\Containers\WildCardCollection.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logger\Logger\Logger.csproj">
+      <Project>{2E3ABE66-3D4E-4D78-A6FF-48A86D1CB401}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

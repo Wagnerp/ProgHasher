@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logger>
+  <logger.configuration watchConfig="true" threshold="Debug">
+    <root>
+      <details level="Debug"/>
+      <notifier name="FileNotifier"/>
+      <notifier name="ConsoleNotifier"/>
+    </root>
+
+    <!--logger>
+      <details name="ProgHasher.Hasher" level="Fatal"/>
+      <notifier name="ConsoleNotifier"/>
+      <notifier name="FileNotifier"/>
+    </logger>
+
+    <logger>
+      <details name="ProgHasher.Program" level="Debug"/>
+      <notifier name="ConsoleNotifier"/>
+      <notifier name="FileNotifier"/>
+    </logger-->
+
+    <notifier name="FileNotifier" type="Logger.Notifier.FileNotifier">
+      <parameters>
+        <param name="filename" value="./Logs/$date$/$assembly$_log_$date$.$extension$"/>
+        <param name="append" value="true"/>
+        <param name="MaxFileSize" value="40"/>
+      </parameters>
+      <layout name="xml-layout" type="Logger.Layout.XmlLayout"/>
+    </notifier>
+
+    <notifier name="ConsoleNotifier" type="Logger.Notifier.ConsoleNotifier">
+      <layout name="text-layout"/>
+    </notifier>
+
+    <layout.config name="xml-layout" type="Logger.Layout.XmlLayout">
+      <parameters>
+        <param name="header" value="[Header]"/>
+        <param name="footer" value="[Footer]"/>
+        <param name="rootnode" value="Logger">
+          <attribute name="machine" value="$machine$"/>
+          <attribute name="user" value="$user$"/>
+        </param>
+		<!--pattern-->
+        <param name="lognode" value="Log">
+		  <attribute name="date" value="$date$"/>
+          <attribute name="time" value="$time$"/>
+          <attribute name="level" value="$level$"/>
+		  <attribute name="thread" value="$thread$"/>
+          <message value="$content$%n$exception$"/>
+		  <!--locationinfo innertext="$locationinfo$"/-->
+		  <locationinfo>
+			<attribute name="file" value="$filename$"/>
+			<attribute name="line" value="$line$"/>
+			<attribute name="class" value="$classname$"/>
+			<attribute name="method" value="$methodname$"/>
+		  </locationinfo>
+        </param>
+      </parameters>
+    </layout.config>
+
+    <layout.config name="text-layout" type="Logger.Layout.TextLayout">
+      <parameters>
+        <param name="header" value="[Header]"/>
+        <param name="footer" value="[Footer]"/>
+        <param name="pattern" value="($date$@$time$)%t[$level$]:%t{$thread$}%t$content$"/>
+      </parameters>
+    </layout.config>
+  </logger.configuration>
+</logger>
